@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Sheet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">WO</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href='{% url "index" %}'>Build Sheet</a></li>
+            <li><a href='{% url "productionSchedule" %}'>Production Schedule</a></li>
+            <li><a href='{% url "report" %}'>Production Report</a></li>
+          </ul>
+          <div class="pull-right">
+            <form class="form-inline">
+                <div class="form-group">    
+                    <input class="form-control mr-sm-2" id="searchtxt" name="searchtxt" type="text" placeholder="W/O number#" aria-label="Search">
+                </div>
+                <div class="form-group">    
+                    <button type="button" id="search" name="search" class="btn btn-primary">search</button>
+                </div>
+            </form>
+          </div>
+          <div class="pull-right">
+
+          </div>
+            
+        </div>
+      </nav>
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-xs-1-12 text-center">
+                <h1>Build Sheet</h1>
+                <div class="pull-right">
+                </div>
+    
+            </div>
+            
+            <form id="buildsheet" name="buildsheet" action="get">
+            <div class="col-xs-12">
+                <div class="form-group">
+    
+                  <label for="">Date</label>
+                  <input type="date" class="form-control" required name="date" id="date" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            
+
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">W/O NUMBER</label>
+                  <input type="text" class="form-control nt" required name="wonumber" id="wonumber" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">Builder Name</label>
+                  <input type="text" class="form-control" required name="buildername" id="buildername" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">Part</label>
+                  <input type="text" class="form-control" required name="part" id="part" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">Start Time</label>
+                  <input type="date" class="form-control" required name="starttime" id="starttime" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">Customer</label>
+                  <input type="text" class="form-control" required name="customer" id="customer" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  
+                    <label for="">Finish Time</label>
+                    <input type="date" class="form-control" required name="finishtime" id="finishtime" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">Tire Size</label>
+                  <input type="text" class="form-control" required name="tiresize" id="tiresize" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">Builder#</label>
+                  <input type="text" class="form-control" required name="builder" id="builder" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                
+                  <div class="form-group">
+                    <label for="">Machine</label>
+                  <input type="text" class="form-control" required name="machine" id="machine" aria-describedby="helpId" placeholder="">
+                  </div>
+                
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">Treatment Mill</label>
+                  <input type="text" class="form-control" required name="mill" id="mill" aria-describedby="helpId">
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+    
+                  <label for="">Serial Number</label>
+                  <input type="text" class="form-control" required name="serialnumber" id="serialnumber" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+    
+                  <label for="">RIM Diameter</label>
+                  <input type="text" class="form-control" required name="rimdiameter" id="rimdiameter" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+    
+                  <label for="">Inches Rubber</label>
+                  <input type="text" class="form-control" required name="inchesrubber" id="inchesrubber" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+    
+                  <label for="">Tread Design</label>
+                  <input type="text" class="form-control" required name="treaddesign" id="treaddesign" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+
+            <hr style="width:100%;text-align:left;margin-left:0;">
+
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">RIM weight</label>
+                  <input type="text" class="form-control nt" required name="rimweight" id="rimweight" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">RIM W/Center</label>
+                  <input type="text" class="form-control nt" required name="rimcenter" id="rimcenter" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th align="center">RUBBER WEIGHT</th>
+                        <th align="center">ACTUAL</th>
+                        <th align="center">TYPE RUBBER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">R850 FIBER</td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="r850w" id="r850w" aria-describedby="helpId" placeholder="">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="r850a" id="r850a" aria-describedby="helpId" placeholder="">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">R803 FIBER</td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="r803w" id="r803w" aria-describedby="helpId" placeholder="">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="r803a" id="r803a" aria-describedby="helpId" placeholder="">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">80 DURO 3%</td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="duro803w" id="duro803w" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="duro803a" id="duro803a" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="duro803t" id="duro803t" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">65 DURO 24%</td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="duro6524w" id="duro6524w" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="duro6524a" id="duro6524a" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="duro6524t" id="duro6524t" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">SETCO 45 DURO</td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="secto45w" id="secto45w" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="secto45a" id="secto45a" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="secto45t" id="secto45t" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">65 DURO 3%</td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="duro653w" id="duro653w" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="duro653a" id="duro653a" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="duro653t" id="duro653t" aria-describedby="helpId" placeholder="">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">BUILD WEIGHT</td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="buildw" id="buildw" aria-describedby="helpId" placeholder="">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control nt"  name="builda" id="builda" aria-describedby="helpId" placeholder="">
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr style="width:100%;text-align:left;margin-left:0;">
+
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">Flash</label>
+                  <input type="text" class="form-control"  name="flash" id="flash" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">Autoclave</label>
+                  <input type="text" class="form-control"  name="autoclave" id="autoclave" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="">Mold Number</label>
+                    <input type="text" class="form-control"  name="moldnumber" id="moldnumber" aria-describedby="helpId" placeholder="">                </div>
+            </div>
+
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">Mold Temp</label>
+                  <input type="text" class="form-control"  name="moldtemp" id="moldtemp" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+    
+                  <label for="">Cure Time</label>
+                  <input type="text" class="form-control"  name="curetime" id="curetime" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+            <hr style="width:100%;text-align:left;margin-left:0;">
+            <div class="col-xs-12">
+                <div class="form-group">
+    
+                  <label for="">Note</label>
+                  
+                  <input type="textfield" class="form-control"  name="note" id="note" aria-describedby="helpId" placeholder="">
+                  <input type="hidden" name="didupdate" id="didupdate" value="0">
+
+                </div>
+            </div>
+            <div class="col-xs-12 text-right">
+                <button type="submit" class="btn btn-primary pull-center" >Submit</button>
+            </div>
+         
+
+    
+        </form>
+        </div>
+        </div>    
+    
+</body>
+</html>
+<script>
+
+$(".nt").on("keypress keyup blur",function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+     $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
+(function($){
+    
+    // jQuery autoGrowInput plugin by James Padolsey
+    // See related thread: http://stackoverflow.com/questions/931207/is-there-a-jquery-autogrow-plugin-for-text-fields
+        
+        $.fn.autoGrowInput = function(o) {
+            
+            o = $.extend({
+                maxWidth: 200,
+                minWidth: 1,
+                comfortZone: 1,
+              width: 1
+            }, o);
+            
+            this.filter('input:text').each(function(){
+                
+                var minWidth = o.minWidth || $(this).width(),
+                    maxWidth = o.maxWidth,
+                    val = '',
+                    input = $(this),
+                    testSubject = $('<tester/>').css({
+                        position: 'absolute',
+                        top: -9999,
+                        left: -9999,
+                        width: 'auto',
+                        fontSize: input.css('fontSize'),
+                        fontFamily: input.css('fontFamily'),
+                        fontWeight: input.css('fontWeight'),
+                        letterSpacing: input.css('letterSpacing'),
+                        whiteSpace: 'nowrap'
+                    }),
+                    check = function() {
+                        
+                        if (val === (val = input.val())) {return;}
+                        
+                        // Enter new content into testSubject
+                        var escaped = val.replace(/&/g, '&amp;').replace(/\s/g,'&nbsp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                        testSubject.html(escaped);
+                        
+                        // Calculate new width + whether to change
+                        var testerWidth = testSubject.width(),
+                        newWidth = testerWidth + o.comfortZone,
+                        currentWidth = input.width();
+                        
+                       if (testerWidth < minWidth) {
+                           newWidth = minWidth;
+                       } else if (testerWidth > maxWidth) {
+                           newWidth = maxWidth;
+                       } 
+
+                       input.width(newWidth + o.comfortZone);  
+                        
+                        
+                        
+                    };
+                    
+                testSubject.insertAfter(input);
+                
+                $(this).bind('input', check);
+                
+            })
+            
+            return this;
+        
+        };
+        
+    })(jQuery);
+    
+    $('input').autoGrowInput();
+    $('textarea').autoGrowInput();
+
+    $('#search').click(function (e) { 
+      e.preventDefault();
+
+      var wonumber =$('#searchtxt').val();
+      $('#wonumber').attr('readonly', true);
+
+
+      $.ajax({
+        type: 'get',
+        url: '{% url "search2" %}',
+        data: {
+            wonumber : wonumber
+        },
+        dataType: 'json',
+        error: function (e){
+          swal("Error","Invalid ID","error");
+
+        },
+        success: function (response) {
+
+          $('#date').val(response.date);
+          $('#wonumber').val(response.w_o_number);
+          $('#buildername').val(response.builder_name);
+          $('#part').val(response.part);
+          $('#starttime').val(response.start_time);
+          $('#customer').val(response.customer_field);
+          $('#finishtime').val(response.finish_time_field);
+          $('#tiresize').val(response.tire_size_field);
+          $('#builder').val(response.builder_field);
+          $('#machine').val(response.machine_field);
+          $('#mill').val(response.treatment_mil_field);
+          $('#serialnumber').val(response.serial_number_field);
+          $('#rimdiameter').val(response.rim_diameter_field);
+          $('#inchesrubber').val(response.inches_rubber_field);
+          $('#treaddesign').val(response.tread_design_field);
+          $('#rimweight').val(response.rim_weight_field);
+          $('#rimcenter').val(response.rim_w_center_field);
+          $('#r850w').val(response.r850_fiber_rubber_weight_field);
+          $('#r850a').val(response.r850_fiber_actual_field);
+          $('#r803w').val(response.r803_fiber_rubber_weight_field);
+          $('#r803a').val(response.r803_fiber_actual_field);
+          $('#duro803w').val(response.number_80_duro_3_rubber_weight_field);
+          $('#duro803a').val(response.number_80_duro_3_actual_field);
+          $('#duro803t').val(response.number_80_duro_3_type_rubber_field);
+          $('#duro6524w').val(response.number_65_duro_24_rubber_weight_field);
+          $('#duro6524a').val(response.number_65_duro_24_actual_field);
+          $('#duro6524t').val(response.number_65_duro_24_type_rubber_field);
+          $('#secto45w').val(response.setco_45_duro_rubber_weight_field);
+          $('#secto45a').val(response.setco_45_duro_actual_field);
+          $('#secto45t').val(response.setco_45_duro_type_rubber_field);
+          $('#duro653w').val(response.number_65_duro_3_rubber_weight_field);
+          $('#duro653a').val(response.number_65_duro_3_actual_field);
+          $('#duro653t').val(response.number_65_duro_3_type_rubber_field);
+          $('#buildw').val(response.build_weight_rubber_weight_field);
+          $('#builda').val(response.build_weight_actual_field);
+          $('#flash').val(response.flash);
+          $('#autoclave').val(response.autoclave);
+          $('#moldnumber').val(response.mold_number);
+          $('#moldtemp').val(response.mold_temp_field);
+          $('#curetime').val(response.cure_time);
+          $('#note').val(response.notes);
+          $('#didupdate').val(1);   
+       
+        }
+      });
+
+      
+    });
+
+    $('#buildsheet').on('submit', function(e){
+      e.preventDefault();
+
+      let form_data = $(this).serializeArray();
+      let form_id = $(this).prop('id');
+      let didupdate= $('#didupdate').val();
+      
+
+      $.ajax({
+        url: '{% url "proaddsch" %}',
+        data: form_data,
+        method: 'get',
+        dataType: 'json',
+        error: function (e){
+         if(didupdate=="1"){
+            swal("Success","Data Updated Successfully","success");
+            $('#'+form_id).trigger('reset');
+            $('#didupdate').val(0);
+            $('#wonumber').attr('readonly', false);
+
+
+          }else{
+            swal("Success","Data Inserted Successfully","success");
+            $('#'+form_id).trigger('reset');
+          } 
+
+        },
+        success: function (r){
+
+            if(didupdate=="1"){
+            swal("Success","Data Updated Successfully","success");
+            $('#'+form_id).trigger('reset');
+            $('#didupdate').val(0);
+            $('#wonumber').attr('readonly', false);
+
+
+          }else{
+            swal("Success","Data Inserted Successfully","success");
+            $('#'+form_id).trigger('reset');
+          }
+
+        }
+      });
+
+    });
+</script>

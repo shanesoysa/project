@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+
+    <title>Production Schedule</title>
+</head>
+<style>
+ 
+</style>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">WO</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><a href='{% url "index" %}'>Build Sheet</a></li>
+        <li class="active"><a href='{% url "productionSchedule" %}'>Production Schedule</a></li>
+        <li><a href='{% url "report" %}'>Production Report</a></li>
+      </ul>
+      <div class="pull-right">
+        <form class="form-inline">
+            <div class="form-group">    
+                <input class="form-control mr-sm-2" id="searchtxt" name="searchtxt" type="text" placeholder="Order#" aria-label="Search">
+            </div>
+            <div class="form-group">    
+                <button type="button" id="search" name="search" class="btn btn-primary">search</button>
+            </div>
+        </form>
+      </div>
+        
+    </div>
+  </nav>
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-1-12 text-center">
+            <h1>Production Schedule</h1>
+            <div class="pull-right">
+            </div>
+
+        </div>
+        <form id="proschedule" name="proschedule" action="get">
+        <div class="col-xs-6">
+            <div class="form-group">
+
+              <label for="">Order#</label>
+              <input type="text" class="form-control" required name="order" id="order" aria-describedby="helpId" placeholder="">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+
+              <label for="">Item Number</label>
+              <input type="text" class="form-control" required name="item" id="item" aria-describedby="helpId" placeholder="">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+
+              <label for="">Description</label>
+              <input type="text" class="form-control" required name="description" id="description" aria-describedby="helpId" placeholder="">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+
+              <label for="">Quantity</label>
+              
+              <input type="text" class="form-control nt" required name="qty" id="qty" aria-describedby="helpId" placeholder="">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+              
+              <!-- <h2><span class="input-wrap"><span class="width-machine" aria-hidden="true">994444444</span><input class="input" value="" type="text"></span></h2> -->
+
+
+              <label for="">Time</label>
+              <input type="time" class="form-control" required name="time" id="time" aria-describedby="helpId" placeholder="">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+
+              <label for="">80</label>
+              <input type="text" class="form-control nt" required name="num80" id="num80" aria-describedby="helpId" placeholder="">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+
+              <label for="">65 24%</label>
+              <input type="text" class="form-control nt" required name="num6524" id="num6524" aria-describedby="helpId" placeholder="">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+
+              <label for="">65 3%</label>
+              <input type="text" class="form-control nt" required name="num653" id="num653" aria-describedby="helpId" placeholder="">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+
+              <label for="">85</label>
+              <input type="text" class="form-control nt" required name="num85" id="num85" aria-describedby="helpId" placeholder="">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+
+              <label for="">45</label>
+              <input type="text" class="form-control nt" required name="num45" id="num45" aria-describedby="helpId" placeholder="">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            
+              <div class="form-group">
+                <label for="">Comment</label>
+                <select class="form-control" required name="comment" id="comment">
+                  <option selected disabled>Select Option</option>
+                {% for c in comments %}
+
+                  <option value="{{c.comment}}">{{c.comment}}</option>
+
+                {% endfor %}
+                </select>
+              </div>
+            
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+
+              <label for="">Status</label>
+              <input type="text" class="form-control" required name="status" id="status" aria-describedby="helpId">
+              <input type="hidden" name="didupdate" id="didupdate" value="0">
+
+            </div>
+        </div>
+
+        <div class="col-xs-12 text-right">
+            <button type="submit" class="btn btn-primary pull-center" >Save/Update</button>
+        </div>
+
+    </form>
+    </div>
+    </div>
+    
+</body>
+</html>
+
+<script>
+  
+  $(".nt").on("keypress keyup blur",function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+     $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
+(function($){
+    
+    // jQuery autoGrowInput plugin by James Padolsey
+    // See related thread: http://stackoverflow.com/questions/931207/is-there-a-jquery-autogrow-plugin-for-text-fields
+        
+        $.fn.autoGrowInput = function(o) {
+            
+            o = $.extend({
+                maxWidth: 200,
+                minWidth: 1,
+                comfortZone: 1,
+              width: 1
+            }, o);
+            
+            this.filter('input:text').each(function(){
+                
+                var minWidth = o.minWidth || $(this).width(),
+                    maxWidth = o.maxWidth,
+                    val = '',
+                    input = $(this),
+                    testSubject = $('<tester/>').css({
+                        position: 'absolute',
+                        top: -9999,
+                        left: -9999,
+                        width: 'auto',
+                        fontSize: input.css('fontSize'),
+                        fontFamily: input.css('fontFamily'),
+                        fontWeight: input.css('fontWeight'),
+                        letterSpacing: input.css('letterSpacing'),
+                        whiteSpace: 'nowrap'
+                    }),
+                    check = function() {
+                        
+                        if (val === (val = input.val())) {return;}
+                        
+                        // Enter new content into testSubject
+                        var escaped = val.replace(/&/g, '&amp;').replace(/\s/g,'&nbsp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                        testSubject.html(escaped);
+                        
+                        // Calculate new width + whether to change
+                        var testerWidth = testSubject.width(),
+                        newWidth = testerWidth + o.comfortZone,
+                        currentWidth = input.width();
+                        
+                       if (testerWidth < minWidth) {
+                           newWidth = minWidth;
+                       } else if (testerWidth > maxWidth) {
+                           newWidth = maxWidth;
+                       } 
+
+                       input.width(newWidth + o.comfortZone);  
+                        
+                        
+                        
+                    };
+                    
+                testSubject.insertAfter(input);
+                
+                $(this).bind('input', check);
+                
+            });
+            
+            return this;
+        
+        };
+        
+    })(jQuery);
+    
+    $('input').autoGrowInput();
+
+
+    $('#search').click(function (e) { 
+      e.preventDefault();
+
+      var ordernum =$('#searchtxt').val();
+      $('#order').attr('readonly', true);
+
+      $.ajax({
+        type: 'get',
+        url: '{% url "search" %}',
+        data: {
+          ordernum : ordernum
+        },
+        dataType: 'json',
+        error: function (e){
+          swal("Error","Invalid ID","error");
+
+        },
+        success: function (response) {
+          $('#order').val(response.order_field);
+          $('#item').val(response.item_number);
+          $('#description').val(response.description);
+          $('#qty').val(response.qty);
+          $('#time').val(response.time.split("/AM|PM/g"));
+          $('#num80').val(response.number_80);
+          $('#num6524').val(response.number_65_24_field);
+          $('#num653').val(response.number_65_3_field);
+          $('#num85').val(response.number_85);
+          $('#num45').val(response.number_45);
+          $('#comment').val(response.comment);
+          $('#status').val(response.status);
+          $('#didupdate').val(1);
+          
+        }
+      });
+
+      
+    });
+
+    $('#proschedule').on('submit', function(e){
+      e.preventDefault();
+
+      let form_data = $(this).serializeArray();
+      let form_id = $(this).prop('id');
+      let didupdate= $('#didupdate').val();
+
+      $.ajax({
+        url: '{% url "proadd" %}',
+        data: form_data,
+        method: 'get',
+        dataType: 'json',
+        error: function (e){
+          if(didupdate=="1"){
+            swal("Success","Data Updated Successfully","success");
+            $('#'+form_id).trigger('reset');
+            $('#didupdate').val(0);
+            $('#order').attr('readonly', false);
+
+
+          }else{
+            swal("Success","Data Inserted Successfully","success");
+            $('#'+form_id).trigger('reset');
+          }
+        
+
+        },
+        success: function (r){
+
+          if(didupdate=="1"){
+            swal("Success","Data Updated Successfully","success");
+            $('#'+form_id).trigger('reset');
+            $('#didupdate').val(0);
+            $('#order').attr('readonly', false);
+
+
+          }else{
+            swal("Success","Data Inserted Successfully","success");
+            $('#'+form_id).trigger('reset');
+          }
+
+
+        }
+      });
+
+    });
+</script>
